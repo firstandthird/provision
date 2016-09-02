@@ -1,0 +1,83 @@
+
+#basic config
+server:
+  region: 'us-west-2'
+  ami: 'ami-d732f0b7'
+  instanceType: 't2.nano'
+  instanceSize: 100
+  keypair: 'default'
+
+keyPath: '{{CWD}}/{{server.keypair}}.pem'
+
+#ec2 based config
+ec2:
+  ImageId: '{{server.ami}}' #ubuntu 14.04
+  InstanceType: '{{server.instanceType}}'
+  MaxCount: 1
+  MinCount: 1
+  KeyName: '{{server.keyName}}'
+  Monitoring:
+    Enabled: true
+  BlockDeviceMappings:
+    -
+      DeviceName: '/dev/sda1'
+      Ebs:
+        VolumeType: 'gp2'
+        VolumeSize: '{{server.instanceSize}}'
+        DeleteOnTermination: true
+
+nginx:
+  enabled: true
+  image: 'firstandthird/nginx'
+  args:
+    name: 'nginx'
+    d: true
+    restart: 'always'
+    volume:
+      - '/etc/nginx/conf.d'
+      - '/etc/certs:/etc/nginx/certs:ro'
+      - '/usr/share/nginx/html'
+      - '/etc/nginx/vhost.d'
+    p:
+      - '80:80'
+      - '443:443'
+
+dockergen:
+  enabled: true
+  image: 'firstandthird/nginx-gen:0.0.2'
+  args:
+    name: 'dockergen'
+    d: true
+    restart: 'always'
+    volumes-from:
+      - 'nginx'
+    volume:
+      - '/var/run/docker.sock:/tmp/docker.sock:ro'
+
+deploy:
+  enabled: true
+  version: '0.0.15'
+  image: 'shipment/deploy:{{deploy.version}}'
+  githubUser: ''
+  githubToken: ''
+  secret: ''
+  args:
+    name: 'deploy'
+    restart: 'always'
+    env:
+      VIRTUAL_HOST: 'deploy.{{host}}'
+      ROOT_HOST: '{{host}}'
+      NODE_ENV: '{{env}}'
+      GH_USERNAME: '{{deploy.githubUser}}'
+      GH_TOKEN: '{{deploy.githubToken}}'
+      SECRET: '{{deploy.secret}}'
+      #ENVIRONMENT: '${ENVIRONMENT}'
+      #SERVER_NAME: '${SERVER_NAME}'
+      #LOG_GROUP: '${LOG_GROUP}'
+      #BRANCH_WHITELIST: '${AUTO_DEPLOY_BRANCH}'
+      #SLACK: '${DEPLOY_SLACK}'
+      PORT: 5000
+    p:
+      - '5000'
+    volume:
+      - '/var/run/docker.sock:/var/run/docker.sock'

@@ -1,0 +1,32 @@
+{
+  "name": "provision",
+  "description": "Node script to provision a server based on a yaml config",
+  "homepage": "https://github.com/firstandthird/provision",
+  "author": "First+Third",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firstandthird/provision.git"
+  },
+  "dependencies": {
+    "async": "^2.0.1",
+    "aws-sdk": "^2.5.3",
+    "confi": "^2.3.0",
+    "js-yaml": "^3.6.1",
+    "lodash": "^4.15.0",
+    "logr": "^1.11.0",
+    "obj2args": "0.0.1",
+    "yargs": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "3.4.0",
+    "eslint-config-firstandthird": "3.0.1",
+    "eslint-plugin-import": "1.14.0"
+  },
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "eslintConfig": {
+    "extends": "firstandthird"
+  }
+}

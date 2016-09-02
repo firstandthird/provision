@@ -1,0 +1,9 @@
+host: ''
+env: 'production'
+server:
+  name: 'test'
+  instanceType: 't2.nano'
+  instanceSize: 8
+  keyName: 'default'
+  users:
+    - 'jgallen23'
