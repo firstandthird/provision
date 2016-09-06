@@ -7,3 +7,5 @@ server:
   keyName: 'default'
   users:
     - 'jgallen23'
+deploy:
+  enabled: false
