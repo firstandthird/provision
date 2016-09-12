@@ -1,4 +1,4 @@
-host: ''
+host: 'stage-apps.velvetcalifornia.com'
 env: 'production'
 server:
   name: 'test2'
