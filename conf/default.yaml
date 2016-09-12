@@ -56,7 +56,7 @@ dockergen:
 
 deploy:
   enabled: true
-  version: '0.0.15'
+  version: '0.0.16'
   image: 'shipment/deploy:{{deploy.version}}'
   githubUser: ''
   githubToken: ''
