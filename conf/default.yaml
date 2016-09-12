@@ -15,7 +15,7 @@ ec2:
   InstanceType: '{{server.instanceType}}'
   MaxCount: 1
   MinCount: 1
-  KeyName: '{{server.keyName}}'
+  KeyName: '{{server.keypair}}'
   Monitoring:
     Enabled: true
   BlockDeviceMappings:

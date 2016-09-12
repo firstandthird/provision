@@ -4,7 +4,7 @@ server:
   name: 'test'
   instanceType: 't2.nano'
   instanceSize: 8
-  keyName: 'default'
+  keypair: 'default'
   users:
     - 'jgallen23'
 deploy:
