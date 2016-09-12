@@ -55,7 +55,7 @@ dockergen:
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
 
 deploy:
-  enabled: true
+  enabled: false
   version: '0.0.16'
   image: 'shipment/deploy:{{deploy.version}}'
   githubUser: ''
@@ -86,7 +86,7 @@ deploy:
       - '/var/run/docker.sock:/var/run/docker.sock'
 
 mongo:
-  enabled: true
+  enabled: false
   image: 'mongo'
   args:
     name: 'mongo'
@@ -96,7 +96,7 @@ mongo:
       - '/data/db'
 
 letsencrypt:
-  enabled: true
+  enabled: false
   image: 'jrcs/letsencrypt-nginx-proxy-companion'
   args:
     name: 'letsencrypt'
