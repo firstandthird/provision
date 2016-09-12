@@ -15,7 +15,7 @@ ec2:
   InstanceType: '{{server.instanceType}}'
   MaxCount: 1
   MinCount: 1
-  KeyName: '{{server.keyName}}'
+  KeyName: '{{server.keypair}}'
   Monitoring:
     Enabled: true
   BlockDeviceMappings:
@@ -56,14 +56,16 @@ dockergen:
 
 deploy:
   enabled: true
-  version: '0.0.15'
+  version: '0.0.16'
   image: 'shipment/deploy:{{deploy.version}}'
   githubUser: ''
   githubToken: ''
   secret: ''
+  slack: ''
   args:
     name: 'deploy'
     restart: 'always'
+    d: true
     env:
       VIRTUAL_HOST: 'deploy.{{host}}'
       ROOT_HOST: '{{host}}'
@@ -71,6 +73,7 @@ deploy:
       GH_USERNAME: '{{deploy.githubUser}}'
       GH_TOKEN: '{{deploy.githubToken}}'
       SECRET: '{{deploy.secret}}'
+      SLACK: '{{deploy.slack}}'
       #ENVIRONMENT: '${ENVIRONMENT}'
       #SERVER_NAME: '${SERVER_NAME}'
       #LOG_GROUP: '${LOG_GROUP}'
