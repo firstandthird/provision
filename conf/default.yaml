@@ -55,7 +55,7 @@ dockergen:
       - '/var/run/docker.sock:/tmp/docker.sock:ro'
 
 deploy:
-  enabled: true
+  enabled: false
   version: '0.0.16'
   image: 'shipment/deploy:{{deploy.version}}'
   githubUser: ''
@@ -84,3 +84,27 @@ deploy:
       - '5000'
     volume:
       - '/var/run/docker.sock:/var/run/docker.sock'
+mongo:
+  enabled: false
+  image: 'mongo'
+  args:
+    name: 'mongo'
+    d: true
+    restart: 'always'
+    volume:
+      - '/data/db'
+
+letsencrypt:
+  enabled: false
+  image: 'jrcs/letsencrypt-nginx-proxy-companion'
+  args:
+    name: 'letsencrypt'
+    d: true
+    restart: 'always'
+    volume:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - '/etc/certs/:/etc/nginx/certs:rw'
+    volumes-from:
+      - 'nginx'
+    env:
+      NGINX_DOCKER_GEN_CONTAINER: 'dockergen'
