@@ -1,11 +1,15 @@
 host: ''
 env: 'production'
 server:
-  name: 'test'
+  name: 'test2'
   instanceType: 't2.nano'
   instanceSize: 8
-  keyName: 'default'
+  keyName: 'default-test'
   users:
-    - 'jgallen23'
+    - 'ecwillis'
+
+ec2:
+  SubnetId: 'subnet-4fefa02a'
+
 deploy:
   enabled: false

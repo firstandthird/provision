@@ -81,3 +81,28 @@ deploy:
       - '5000'
     volume:
       - '/var/run/docker.sock:/var/run/docker.sock'
+
+mongo:
+  enabled: true
+  image: 'mongo'
+  args:
+    name: 'mongo'
+    d: true
+    restart: 'always'
+    volume:
+      - '/data/db'
+
+letsencrypt:
+  enabled: true
+  image: 'jrcs/letsencrypt-nginx-proxy-companion'
+  args:
+    name: 'letsencrypt'
+    d: true
+    restart: 'always'
+    volume:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+      - '/etc/certs/:/etc/nginx/certs:rw'
+    volumes-from:
+      - 'nginx'
+    env:
+      NGINX_DOCKER_GEN_CONTAINER: 'dockergen'
