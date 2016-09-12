@@ -61,6 +61,7 @@ deploy:
   githubUser: ''
   githubToken: ''
   secret: ''
+  slack: ''
   args:
     name: 'deploy'
     restart: 'always'
@@ -71,6 +72,7 @@ deploy:
       GH_USERNAME: '{{deploy.githubUser}}'
       GH_TOKEN: '{{deploy.githubToken}}'
       SECRET: '{{deploy.secret}}'
+      SLACK: '{{deploy.slack}}'
       #ENVIRONMENT: '${ENVIRONMENT}'
       #SERVER_NAME: '${SERVER_NAME}'
       #LOG_GROUP: '${LOG_GROUP}'
