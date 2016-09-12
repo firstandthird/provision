@@ -65,6 +65,7 @@ deploy:
   args:
     name: 'deploy'
     restart: 'always'
+    d: true
     env:
       VIRTUAL_HOST: 'deploy.{{host}}'
       ROOT_HOST: '{{host}}'
