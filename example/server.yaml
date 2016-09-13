@@ -8,8 +8,5 @@ server:
   users:
     - 'ecwillis'
 
-ec2:
-  SubnetId: 'subnet-4fefa02a'
-
 deploy:
   enabled: false

@@ -83,7 +83,7 @@ deploy:
       - '/var/run/docker.sock:/var/run/docker.sock'
 
 mongo:
-  enabled: true
+  enabled: false
   image: 'mongo'
   args:
     name: 'mongo'
@@ -93,7 +93,7 @@ mongo:
       - '/data/db'
 
 letsencrypt:
-  enabled: true
+  enabled: false
   image: 'jrcs/letsencrypt-nginx-proxy-companion'
   args:
     name: 'letsencrypt'
