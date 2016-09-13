@@ -1,12 +1,12 @@
-host: 'stage-apps.velvetcalifornia.com'
+host: ''
 env: 'production'
 server:
-  name: 'test2'
+  name: 'test'
   instanceType: 't2.nano'
   instanceSize: 8
-  keyName: 'default-test'
+  keypair: 'default'
   users:
+    - 'jgallen23'
     - 'ecwillis'
-
 deploy:
   enabled: false
