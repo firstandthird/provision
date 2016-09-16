@@ -62,6 +62,7 @@ deploy:
   githubToken: ''
   secret: ''
   slack: ''
+  env: 'production'
   args:
     name: 'deploy'
     restart: 'always'
@@ -69,7 +70,7 @@ deploy:
     env:
       VIRTUAL_HOST: 'deploy.{{host}}'
       ROOT_HOST: '{{host}}'
-      NODE_ENV: '{{env}}'
+      NODE_ENV: '{{deploy.env}}'
       GH_USERNAME: '{{deploy.githubUser}}'
       GH_TOKEN: '{{deploy.githubToken}}'
       SECRET: '{{deploy.secret}}'
@@ -84,15 +85,16 @@ deploy:
       - '5000'
     volume:
       - '/var/run/docker.sock:/var/run/docker.sock'
+
 mongo:
   enabled: false
-  image: 'mongo'
+  image: 'mongo:3.2'
   args:
     name: 'mongo'
     d: true
     restart: 'always'
     volume:
-      - '/data/db'
+      - '/data/db:/data/db'
 
 letsencrypt:
   enabled: false
