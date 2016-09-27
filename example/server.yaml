@@ -1,4 +1,4 @@
-host: 'surveys.neopundits.com'
+host: ''
 env: 'production'
 server:
   name: 'survey-apps'
@@ -9,6 +9,3 @@ server:
     - 'ecwillis'
 deploy:
   enabled: false
-
-ec2:
-  SubnetId: 'subnet-4fefa02a'
