@@ -1,12 +1,14 @@
-host: ''
+host: 'surveys.neopundits.com'
 env: 'production'
 server:
-  name: 'test'
+  name: 'survey-apps'
   instanceType: 't2.nano'
   instanceSize: 8
   keypair: 'default'
   users:
-    - 'jgallen23'
     - 'ecwillis'
 deploy:
   enabled: false
+
+ec2:
+  SubnetId: 'subnet-4fefa02a'
