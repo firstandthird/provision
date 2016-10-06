@@ -30,7 +30,6 @@ async.auto({
       path: `${__dirname}/conf`,
       context: baseConf
     });
-    log(config.server);
     done(null, config);
   }],
 
@@ -43,6 +42,7 @@ async.auto({
   },
 
   confirm: ['rl', 'argv', (results, done) => {
+    log(results.config);
     const message = (results.argv.destroy) ? 'Remove instance? (y/n) ' : 'Create or Update instance? (y/n)';
     results.rl.question(message, (answer) => {
       results.rl.close();
