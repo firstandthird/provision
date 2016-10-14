@@ -56,29 +56,26 @@ dockergen:
 
 deploy:
   enabled: false
-  version: '0.0.16'
+  version: '0.0.19'
   image: 'shipment/deploy:{{deploy.version}}'
   githubUser: ''
   githubToken: ''
   secret: ''
   slack: ''
+  env: 'production'
   args:
     name: 'deploy'
     restart: 'always'
     d: true
     env:
       VIRTUAL_HOST: 'deploy.{{host}}'
-      ROOT_HOST: '{{host}}'
-      NODE_ENV: '{{env}}'
+      DOMAIN: '{{host}}'
+      NODE_ENV: '{{deploy.env}}'
       GH_USERNAME: '{{deploy.githubUser}}'
       GH_TOKEN: '{{deploy.githubToken}}'
       SECRET: '{{deploy.secret}}'
       SLACK: '{{deploy.slack}}'
-      #ENVIRONMENT: '${ENVIRONMENT}'
-      #SERVER_NAME: '${SERVER_NAME}'
-      #LOG_GROUP: '${LOG_GROUP}'
-      #BRANCH_WHITELIST: '${AUTO_DEPLOY_BRANCH}'
-      #SLACK: '${DEPLOY_SLACK}'
+      SLACK_USER: 'Shipment/{{server.name}}'
       PORT: 5000
     p:
       - '5000'
@@ -87,13 +84,13 @@ deploy:
 
 mongo:
   enabled: false
-  image: 'mongo'
+  image: 'mongo:3.2'
   args:
     name: 'mongo'
     d: true
     restart: 'always'
     volume:
-      - '/data/db'
+      - '/data/db:/data/db'
 
 letsencrypt:
   enabled: false
@@ -109,3 +106,16 @@ letsencrypt:
       - 'nginx'
     env:
       NGINX_DOCKER_GEN_CONTAINER: 'dockergen'
+
+logspout:
+  enabled: false
+  image: 'gliderlabs/logspout'
+  command: ''
+  args:
+    name: 'logspout'
+    d: true
+    restart: 'always'
+    env:
+      SYSLOG_HOSTNAME: '{{server.name}}'
+    volume:
+      - '/var/run/docker.sock:/var/run/docker.sock'
