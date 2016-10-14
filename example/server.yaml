@@ -1,4 +1,4 @@
-host: 'stage2.neopundits.com'
+host: ''
 env: 'production'
 server:
   name: 'stage-apps'
@@ -6,8 +6,6 @@ server:
   instanceSize: 8
   keypair: 'default'
   users:
-    - 'ecwillis'
+    - 'jgallen'
 deploy:
   enabled: false
-ec2:
-  SubnetId: 'subnet-4fefa02a'
