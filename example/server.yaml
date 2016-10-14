@@ -1,7 +1,7 @@
-host: ''
+host: 'stage2.neopundits.com'
 env: 'production'
 server:
-  name: 'survey-apps'
+  name: 'stage-apps'
   instanceType: 't2.nano'
   instanceSize: 8
   keypair: 'default'
@@ -9,3 +9,5 @@ server:
     - 'ecwillis'
 deploy:
   enabled: false
+ec2:
+  SubnetId: 'subnet-4fefa02a'
