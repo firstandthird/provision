@@ -44,7 +44,7 @@ nginx:
 
 dockergen:
   enabled: true
-  image: 'firstandthird/nginx-gen:0.0.2'
+  image: 'firstandthird/nginx-gen:0.0.5'
   args:
     name: 'dockergen'
     d: true
