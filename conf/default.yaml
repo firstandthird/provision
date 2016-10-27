@@ -44,7 +44,7 @@ nginx:
 
 dockergen:
   enabled: true
-  image: 'firstandthird/nginx-gen:0.0.2'
+  image: 'firstandthird/nginx-gen:0.0.5'
   args:
     name: 'dockergen'
     d: true
@@ -56,12 +56,13 @@ dockergen:
 
 deploy:
   enabled: false
-  version: '0.0.19'
+  version: '0.0.21'
   image: 'shipment/deploy:{{deploy.version}}'
   githubUser: ''
   githubToken: ''
   secret: ''
   slack: ''
+  letsEncryptEmail: ''
   env: 'production'
   args:
     name: 'deploy'
@@ -69,6 +70,7 @@ deploy:
     d: true
     env:
       VIRTUAL_HOST: 'deploy.{{host}}'
+      LETSENCRYPT_HOST: 'deploy.{{host}}'
       DOMAIN: '{{host}}'
       NODE_ENV: '{{deploy.env}}'
       GH_USERNAME: '{{deploy.githubUser}}'
@@ -76,6 +78,7 @@ deploy:
       SECRET: '{{deploy.secret}}'
       SLACK: '{{deploy.slack}}'
       SLACK_USER: 'Shipment/{{server.name}}'
+      LETSENCRYPT_EMAIL: '{{deploy.letsEncryptEmail}}'
       PORT: 5000
     p:
       - '5000'
