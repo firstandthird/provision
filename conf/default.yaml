@@ -63,7 +63,7 @@ deploy:
   secret: ''
   slack: ''
   letsEncryptEmail: ''
-  deployEnv: 'production'
+  env: 'production'
   args:
     name: 'deploy'
     restart: 'always'
