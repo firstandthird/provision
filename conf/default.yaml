@@ -28,7 +28,7 @@ ec2:
 
 nginx:
   enabled: true
-  image: 'firstandthird/nginx'
+  image: 'firstandthird/nginx:0.0.1'
   args:
     name: 'nginx'
     d: true
