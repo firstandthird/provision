@@ -56,14 +56,14 @@ dockergen:
 
 deploy:
   enabled: false
-  version: '0.0.21'
+  version: '0.0.22'
   image: 'shipment/deploy:{{deploy.version}}'
   githubUser: ''
   githubToken: ''
   secret: ''
   slack: ''
   letsEncryptEmail: ''
-  env: 'production'
+  deployEnv: 'production'
   args:
     name: 'deploy'
     restart: 'always'
@@ -72,7 +72,7 @@ deploy:
       VIRTUAL_HOST: 'deploy.{{host}}'
       LETSENCRYPT_HOST: 'deploy.{{host}}'
       DOMAIN: '{{host}}'
-      NODE_ENV: '{{deploy.env}}'
+      DEPLOY_ENV: '{{deploy.env}}'
       GH_USERNAME: '{{deploy.githubUser}}'
       GH_TOKEN: '{{deploy.githubToken}}'
       SECRET: '{{deploy.secret}}'
